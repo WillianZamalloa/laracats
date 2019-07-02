@@ -1,10 +1,8 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.admin');
 });
 
-Route::('saludo', function () {
-    return "Hola mundo!!!";
-});
+
 
