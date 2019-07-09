@@ -23,8 +23,7 @@ class CreateCatsTable extends Migration
             $table->foreign('breed_id')->references('id')->on('breeds');
             
         });
-        //relation
-        
+                
     }
     /**
      * Reverse the migrations.
