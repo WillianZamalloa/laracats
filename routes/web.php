@@ -11,4 +11,6 @@ Route::get('/home', function () {
 
 Auth::routes();
 
+Route::resource('cat', 'CatController');
+
 //Route::get('/home', 'HomeController@index')->name('home');

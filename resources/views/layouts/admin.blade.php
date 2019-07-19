@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/_all-skins.min.css">
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="shortcut icon" href="img/favicon.ico">
-
+    
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -97,7 +97,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="almacen/articulo"><i class="fa fa-circle-o"></i> Cats</a></li>
+                <li><a href="cat"><i class="fa fa-circle-o"></i> Cats</a></li>
               </ul>
             </li>
             
@@ -187,5 +187,6 @@
     <!-- AdminLTE App -->
     <script src="js/app.min.js"></script>
     
+       
   </body>
 </html>

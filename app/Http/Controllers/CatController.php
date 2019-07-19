@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cat;
+use App\Breed;
 use Illuminate\Http\Request;
 
 class CatController extends Controller
@@ -12,9 +13,19 @@ class CatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request) {
+            $buscar = $request->get('buscar');
+            $cats = Cat::orderBy('id', 'DESC')
+                    ->where('name','like','%'.$buscar.'%')
+                    ->paginate(5);
+            
+            $breeds = Breed::all();
+            
+            return view('cats.index', compact('cats','buscar','breeds'));
+        }
+        
     }
 
     /**
@@ -35,7 +46,10 @@ class CatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Almacenamos todo el objeto en la BD
+        $cat = Cat::create($request->all());
+        $cat->save();
+        return redirect()->route('cat.index');
     }
 
     /**
@@ -80,6 +94,8 @@ class CatController extends Controller
      */
     public function destroy(Cat $cat)
     {
-        //
+        //return $cat->id;
+        Cat::find($cat->id)->delete();
+        return back();
     }
 }
