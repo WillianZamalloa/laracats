@@ -18,5 +18,25 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    created() {
+        this.getBreeds();
+    },
+    data: {
+        breeds: []
+    },
+    methods: {
+        getBreeds: function(){
+            var urlBreeds = 'breed';
+            axios.get(urlBreeds).then(response => {
+                this.breeds = response.data;
+            });
+        },
+        deleteBreed: function(breed){
+            var url = 'breed/' + breed.id;
+            axios.delete(url ).then(response => {
+                this.getBreeds();
+            });
+        }
+    }
 });

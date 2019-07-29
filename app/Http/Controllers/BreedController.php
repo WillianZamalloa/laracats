@@ -14,20 +14,11 @@ class BreedController extends Controller
      */
     public function index()
     {
-        //
+        $breeds = Breed::orderBy('id', 'ASC')->get();
+        return $breeds; 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
+     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,27 +29,6 @@ class BreedController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Breed  $breed
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Breed $breed)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Breed  $breed
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Breed $breed)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -78,8 +48,8 @@ class BreedController extends Controller
      * @param  \App\Breed  $breed
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Breed $breed)
+    public function destroy($id)
     {
-        //
+        Breed::destroy($id);
     }
 }

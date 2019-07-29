@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html>  
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laracats | Admin</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -108,7 +109,7 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Breeds</a></li>
+                <li><a href="breeds"><i class="fa fa-circle-o"></i> Breeds</a></li>
               </ul>
             </li>
                                    
@@ -179,7 +180,9 @@
         <strong>Copyright &copy; 2019 <a href="#">willian.zamalloa@unsaac.edu.pe</a>.</strong> All rights reserved.
       </footer>
 
-      
+    
+    <!-- laravel mix app.js -->
+    <script src="/js/app.js"></script>
     <!-- jQuery 2.1.4 -->
     <script src="AdminLTE/js/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
