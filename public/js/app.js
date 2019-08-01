@@ -14200,7 +14200,10 @@ var app = new Vue({
     },
 
     data: {
-        breeds: []
+        breeds: [],
+        newName: '',
+        errors: [],
+        fillbreed: { 'id': '', 'name': '' }
     },
     methods: {
         getBreeds: function getBreeds() {
@@ -14211,13 +14214,44 @@ var app = new Vue({
                 _this.breeds = response.data;
             });
         },
-        deleteBreed: function deleteBreed(breed) {
+        editBreed: function editBreed(breed) {
+            this.fillbreed.id = breed.id;
+            this.fillbreed.name = breed.name;
+            $('#modal-edit').modal('show');
+        },
+        updateBreed: function updateBreed(id) {
             var _this2 = this;
+
+            var url = 'breed/' + id;
+            axios.put(url, this.fillbreed).then(function (response) {
+                _this2.getBreeds();
+                _this2.fillbreed = { 'id': '', 'name': '' };
+                _this2.errors = [];
+                $('#modal-edit').modal('hide');
+            }).catch(function (error) {
+                _this2.errors = 'Corrija para poder editar';
+            });
+        },
+        deleteBreed: function deleteBreed(breed) {
+            var _this3 = this;
 
             var url = 'breed/' + breed.id;
             axios.delete(url).then(function (response) {
-                _this2.getBreeds();
-                //alert(breed.id + '-----'+url);
+                _this3.getBreeds();
+            });
+        },
+        createBreed: function createBreed() {
+            var _this4 = this;
+
+            var url = 'breed';
+            axios.post(url, {
+                name: this.newName
+            }).then(function (response) {
+                _this4.getBreeds();
+                _this4.newName = '';
+                $('#modal-create').modal('hide');
+            }).catch(function (error) {
+                _this4.errors = error.response.data;
             });
         }
     }

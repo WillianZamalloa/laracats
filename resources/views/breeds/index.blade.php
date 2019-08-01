@@ -3,9 +3,9 @@
 <div class="row" >
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 		<h3>Listado de Razas 
-			<a href="" data-target="#modal-create" data-toggle="modal">
-				<button class="btn btn-success">Nuevo</button>
-		    </a>
+			<button class="btn btn-success" data-target="#modal-create" data-toggle="modal" >
+				Nuevo
+		    </button>
 		</h3>		
 	</div>
 </div>
@@ -24,16 +24,19 @@
 					<td>@{{ breed.id }}</td>
 					<td>@{{ breed.name }}</td>
 					<td>
-						<a href="#" class="btn btn-info">Editar</a>
+						<a class="btn btn-success"  v-on:click.prevent="editBreed(breed)">
+							Editar 
+						</a>
 
                         <button class="btn btn-danger" @click.prevent="deleteBreed(breed)">
 							Eliminar
-						</button>
-						
+						</button>						
 					</td>
 				</tr>
-			</table>			
+			</table>						
 		</div>		
-	</div>	
+	</div>
+	@include('breeds.create')
+	@include('breeds.edit')		
 </div>
 @endsection

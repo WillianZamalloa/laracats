@@ -23,7 +23,10 @@ const app = new Vue({
         this.getBreeds();
     },
     data: {
-        breeds: []
+        breeds: [],
+        newName: '',
+        errors: [],
+        fillbreed: {'id': '', 'name': ''}
     },
     methods: {
         getBreeds: function(){
@@ -32,10 +35,38 @@ const app = new Vue({
                 this.breeds = response.data;
             });
         },
+        editBreed: function(breed){
+            this.fillbreed.id   = breed.id;
+			this.fillbreed.name = breed.name;
+			$('#modal-edit').modal('show');
+        },
+        updateBreed: function(id) {
+			var url = 'breed/' + id;
+			axios.put(url, this.fillbreed).then(response => {
+				this.getBreeds();
+				this.fillbreed = {'id': '', 'name': ''};
+				this.errors	  = [];
+				$('#modal-edit').modal('hide');
+			}).catch(error => {
+				this.errors = 'Corrija para poder editar'
+			});
+		},
         deleteBreed: function(breed){
             var url = 'breed/' + breed.id;
             axios.delete(url ).then(response => {
                 this.getBreeds();
+            });
+        },
+        createBreed: function(){
+            var url = 'breed';
+            axios.post(url, {
+                name: this.newName
+            }).then(response => {
+                this.getBreeds();
+                this.newName = '';
+                $('#modal-create').modal('hide');
+            }).catch( error => {
+                this.errors = error.response.data;
             });
         }
     }

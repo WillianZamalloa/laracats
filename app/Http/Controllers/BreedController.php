@@ -14,7 +14,7 @@ class BreedController extends Controller
      */
     public function index()
     {
-        $breeds = Breed::orderBy('id', 'ASC')->get();
+        $breeds = Breed::orderBy('id', 'DESC')->get();
         return $breeds; 
     }
 
@@ -26,7 +26,12 @@ class BreedController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        Breed::create($request->all());
+        return;
+        
     }
 
 
@@ -37,9 +42,13 @@ class BreedController extends Controller
      * @param  \App\Breed  $breed
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Breed $breed)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        Breed::find($id)->update($request->all());
+        return;
     }
 
     /**
